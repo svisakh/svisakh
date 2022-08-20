@@ -14,7 +14,7 @@ public class BeerServiceImpl implements BeerService {
 	public BeerDto getBeerById(UUID beerId) {
 		// TODO Auto-generated method stub
 		return BeerDto.builder().id(UUID.randomUUID()).beerName("Galaxy Cat")
-				.beerStyle(BeerStyleEnum.LAGER_BEER)
+				.beerStyle("LAGER_BEER")
 				.build();
 	}
 	

@@ -1,12 +1,20 @@
 package com.viz.udemy.brewery201.brewery.web.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +29,7 @@ import com.viz.udemy.brewery201.brewery.web.service.BeerService;
 
 @RequestMapping("/api/v1/beer")
 @RestController
+@Validated
 public class BeerController {
 	
 	@Autowired
@@ -28,13 +37,13 @@ public class BeerController {
 	
 	
 	@GetMapping("/{beerId}")
-	public ResponseEntity<BeerDto> getBeerById(@PathVariable UUID beerId){
+	public ResponseEntity<BeerDto> getBeerById(@NotNull @PathVariable UUID beerId){
 		return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
 		
 	}
 	
 	@PostMapping
-	public ResponseEntity saveNewBeer(@RequestBody BeerDto beerDto) {
+	public ResponseEntity saveNewBeer(@Valid @NotNull @RequestBody BeerDto beerDto) {
 		BeerDto savedDto = beerService.saveNewBeer(beerDto);
 		
 		HttpHeaders headers = new HttpHeaders();
@@ -44,7 +53,7 @@ public class BeerController {
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PutMapping("/{beerId}")
-	public void updateBeerById(@RequestBody BeerDto beerDto, @PathVariable("beerId")UUID  beerId) {
+	public void updateBeerById(@Valid @RequestBody BeerDto beerDto, @PathVariable("beerId")UUID  beerId) {
 		BeerDto savedDto = beerService.updateBeer(beerId, beerDto);
 		
 	
@@ -55,4 +64,6 @@ public class BeerController {
 	public void deleteBeerById(@PathVariable("beerId")UUID  beerId) {
 		BeerDto savedDto = beerService.deleteBeerById(beerId);
 	}
+	
+	
 }

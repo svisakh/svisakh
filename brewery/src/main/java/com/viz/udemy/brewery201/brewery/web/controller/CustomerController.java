@@ -1,12 +1,18 @@
 package com.viz.udemy.brewery201.brewery.web.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+
+import javax.validation.ConstraintViolationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +39,7 @@ public class CustomerController {
 	}
 	
 	@PostMapping
-	public ResponseEntity handlePost(@RequestBody CustomerDto customerDto) {
+	public ResponseEntity handlePost(@Validated @RequestBody CustomerDto customerDto) {
 		CustomerDto savedDto = customerService.saveNewCustomer(customerDto);
 		
 		HttpHeaders headers = new HttpHeaders();
@@ -45,7 +51,7 @@ public class CustomerController {
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@PutMapping("/{customerId}")
-	public void handlePost(@RequestBody CustomerDto customerDto, @PathVariable("customerId")UUID  customerId) {
+	public void handlePost(@Validated @RequestBody CustomerDto customerDto, @PathVariable("customerId")UUID  customerId) {
 		CustomerDto savedDto = customerService.updateCustomer(customerId, customerDto);
 		
 	
