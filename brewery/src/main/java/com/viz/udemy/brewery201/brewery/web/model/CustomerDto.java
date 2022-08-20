@@ -14,9 +14,6 @@ import lombok.NoArgsConstructor;
 public class CustomerDto {
 	private UUID customerId;
 	private String customerName;
-	public Object getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 	
 }
