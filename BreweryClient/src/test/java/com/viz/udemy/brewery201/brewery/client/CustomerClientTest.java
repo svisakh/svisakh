@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.viz.udemy.brewery201.brewery.web.model.CustomerDto;
 
 @SpringBootTest
+@Disabled
 public class CustomerClientTest {
 	
 	@Autowired

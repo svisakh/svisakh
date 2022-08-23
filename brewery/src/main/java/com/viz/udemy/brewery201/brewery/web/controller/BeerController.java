@@ -27,9 +27,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.viz.udemy.brewery201.brewery.web.model.BeerDto;
 import com.viz.udemy.brewery201.brewery.web.service.BeerService;
 
+import lombok.val;
+import lombok.extern.slf4j.Slf4j;
+
 @RequestMapping("/api/v1/beer")
 @RestController
 @Validated
+@Slf4j
 public class BeerController {
 	
 	@Autowired
@@ -44,9 +48,8 @@ public class BeerController {
 	
 	@PostMapping
 	public ResponseEntity saveNewBeer(@Valid @NotNull @RequestBody BeerDto beerDto) {
-		BeerDto savedDto = beerService.saveNewBeer(beerDto);
-		
-		HttpHeaders headers = new HttpHeaders();
+		val savedDto = beerService.saveNewBeer(beerDto);
+		val headers = new HttpHeaders();
 		headers.add("Location",savedDto.getId().toString());
 		return new ResponseEntity(headers, HttpStatus.CREATED);
 	}

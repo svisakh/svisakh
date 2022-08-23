@@ -1,0 +1,10 @@
+= Visakh Brewery Order Services Documentation
+
+HTTP Requests:
+include::{snippets}/api/v1/beer/http-request.adoc[]
+
+HTTP Responses:
+include::{snippets}/api/v1/beer/http-response.adoc[]
+
+HTTP Request Fields:
+include::{snippets}/api/v1/beer/request-fields.adoc[]

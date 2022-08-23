@@ -6,12 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.net.URI;
 import java.util.UUID;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.viz.udemy.brewery201.brewery.web.model.BeerDto;
 
+@Disabled
 @SpringBootTest
 public class BreweryClientTest {
 	
