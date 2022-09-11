@@ -53,7 +53,7 @@ public class BeerServiceImpl implements BeerService {
 	
 	public BeerDto deleteBeerById(UUID beerId) {
 		//return BeerDto.builder().id(UUID.randomUUID()).build();
-		beerMapper.beerToBeerDto(beerRepository.deleteById(beerId));
+		//beerMapper.beerToBeerDto(beerRepository.deleteById(beerId));
 		return null;
 	}
 }
